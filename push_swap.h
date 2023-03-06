@@ -11,10 +11,12 @@
 # include <mlx.h>
 
 typedef struct push{
-    int *nb;
+    int *stack_a;
+    int *stack_b;
 	int nb_count;
 }				t_push;
 
 int main(int argc, char **argv);
+void px(t_push *push, int p);
 
 #endif

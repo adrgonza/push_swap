@@ -1,5 +1,15 @@
 #include "push_swap.h"
 
+void ft_exit(t_push *push)
+{
+    exit(0);
+}
+
+void ft_sort_numbers(t_push *push)
+{
+
+}
+
 int ft_get_number(int argc, char **argv, t_push *push) // there are leaks int this function
 {
     char **splitted;
@@ -19,11 +29,11 @@ int ft_get_number(int argc, char **argv, t_push *push) // there are leaks int th
     while (splitted[i]) //get size of *int
         i++;
     push->nb_count = i;
-    push->nb = malloc(i); //allocate memory for it
+    push->stack_a = malloc(i); //allocate memory for it
     i = -1;
     while(splitted[++i]) //put every number in a int *
     {
-        push->nb[i] = atoi(splitted[i]);
+        push->stack_a[i] = atoi(splitted[i]);
         free(splitted[i]);
     }
     free(splitted);
@@ -53,8 +63,9 @@ int main(int argc, char **argv)
     {
         j = i;
         while (++j < push.nb_count)
-            if (push.nb[j] == push.nb[i])
+            if (push.stack_a[j] == push.stack_a[i])
                 return (printf("\033[31mError:\nRepeated numbers...\n"));
     }
-
+    px(&push, 1);
+    //ft_sort_numbers(&push);
 }
