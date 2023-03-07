@@ -12,6 +12,21 @@ void ft_sort_numbers(t_push *push)
 
 }
 
+int ft_convert_nb(t_push *push) //look for de lowest number and change all of them (1 to n)
+{
+    int i;
+
+    i = 0;
+    push->min_number = push->stack_a[0];
+    while (++i <push->nb_count)
+        if (push->stack_a[i] < push->min_number)
+            push->min_number = push->stack_a[i];
+    i = -1;
+    while (++i <push->nb_count)
+        push->stack_a[i] -= push->min_number - 1;
+    return (-2);
+}
+
 void ft_get_number(int argc, char **argv, t_push *push)
 {
     push->string = malloc(1);
@@ -59,5 +74,10 @@ int main(int argc, char **argv)
                 return (printf("\033[31mError:\nOnly numbers allow...\n"));
     }
     ft_get_number(argc, argv, &push);
+    i = -1;
+    while (++i < push.nb_count && i != -1)
+        if (push.stack_a[i] < 1)
+            i = ft_convert_nb(&push);
+    rrx(&push, 1);
     ft_sort_numbers(&push);
 }
