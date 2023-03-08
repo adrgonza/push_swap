@@ -1,106 +1,100 @@
 #include "push_swap.h"
 
-void sx(t_push *push, int s) // saber si cuando s = 3 pero no hay stack_x y si no mover write
+int operation(t_push *push, int n)
+{
+    if (n == 1)
+        return(sx(push->stack_a), write(1, "sa\n", 3));
+    if (n == 2)
+        return(sx(push->stack_b), write(1, "sb\n", 3));
+    if (n == 3)
+        return(sx(push->stack_a), sx(push->stack_b), write(1, "ss\n", 3));
+    if (n == 4)
+        return(px(push->stack_a), write(1, "pa\n", 3));
+    if (n == 5)
+        return(px(push->stack_b), write(1, "pb\n", 3));
+    if (n == 6)
+        return(rx(push->stack_a), write(1, "ra\n", 3));
+    if (n == 7)
+        return(rx(push->stack_b), write(1, "rb\n", 3));
+    if (n == 8)
+        return(rx(push->stack_a), rx(push->stack_b), write(1, "rr\n", 3));
+    if (n == 9)
+        return(rrx(push->stack_a), write(1, "rra\n", 4));
+    if (n == 10)
+       return(rrx(push->stack_b), write(1, "rrb\n", 4));
+    if (n == 11)
+        return(rrx(push->stack_a), rrx(push->stack_b), write(1, "rrr\n", 4));
+    return 0;
+}
+
+void sx(int *stack) // saber si cuando s = 3 pero no hay stack_x y si no mover write
 {
     int aux;
 
-    if ((s == 1 || s == 3) && push->stack_a[1])
+    if (stack[1])
     {
-        aux = push->stack_a[0];
-        push->stack_a[0] = push->stack_a[1];
-        push->stack_a[1] = aux;
-        if (s == 1)
-            write(1, "sa\n", 4);
+        aux = stack[0];
+        stack[0] = stack[1];
+        stack[1] = aux;
     }
-    if ((s == 2 || s == 3) && push->stack_a[1])
-    {
-        aux = push->stack_b[0];
-        push->stack_b[0] = push->stack_b[1];
-        push->stack_b[1] = aux;
-        if (s == 2)
-            write(1, "sb\n", 4);
-    }
-    if(s == 3)
-        write(1, "ss\n", 4);
 }
 
-void px(t_push *push, int p)
+void px(int *stack)
 {
     int i;
     int aux;
     int xua;
 
     i = -1;
-    if (p == 1 && push->stack_b[0])
+    if (stack[0])
     {
-        aux = push->stack_a[0];
-        push->stack_a[0] = push->stack_b[0];
-        while(push->stack_a[++i])
+        aux = stack[0];
+        stack[0] = stack[0];
+        while(stack[++i])
         {
-            xua = push->stack_a[i + 1];
-            push->stack_a[i + 1] = aux;
+            xua = stack[i + 1];
+            stack[i + 1] = aux;
             aux = xua;
         }
-        write(1, "pa\n", 4);
-    }
-    if (p == 2 && push->stack_a[0])
-    {
-        aux = push->stack_b[0];
-        push->stack_b[0] = push->stack_a[0];
-        while(push->stack_b[++i])
-        {
-            xua = push->stack_b[i + 1];
-            push->stack_b[i + 1] = aux;
-            aux = xua;
-        }
-        write(1, "pb\n", 4);
     }
 }
 
-void rx(t_push *push, int r) //check de cuando r == 3
+void rx(int *stack)
 {
     int aux;
     int xua;
     int i;
     
     i = 0;
-    if (r == 1 || r == 3)
+    while (stack[i])
+        i++;
+    aux = stack[--i];
+    stack[i] = stack[0];
+    while(stack[--i])
     {
-        while (push->stack_a[i])
-            i++;
-        aux = push->stack_a[--i];
-        push->stack_a[i] = push->stack_a[0];
-        while(push->stack_a[--i])
-        {
-            xua = push->stack_a[i];
-            push->stack_a[i] = aux;
-            aux = xua;
-        }
-    }
-    i = 0;
-    if (r == 2 || r == 3)
-    {
-        while (push->stack_b[i])
-            i++;
-        aux = push->stack_b[--i];
-        push->stack_b[i] = push->stack_b[0];
-        while(push->stack_b[--i])
-        {
-            xua = push->stack_b[i];
-            push->stack_b[i] = aux;
-            aux = xua;
-        }
+        xua = stack[i];
+        stack[i] = aux;
+        aux = xua;
     }
 }
 
-void rrx(t_push *push, int rr)
+void rrx(int *stack)
 {
-    if (rr == 1 || rr == 3)
+    int aux;
+    int xua;
+    int i;
+    
+    i = 0;
+    while (stack[i])
+        i++;
+    aux = stack[0];
+    stack[0] = stack[--i];
+    stack[i] = 0;
+    i = -1;
+    while(stack[++i])
     {
-        
-    }
-    if (rr == 2 || rr == 3)
-    {
-        
+        xua = stack[i + 1];
+        stack[i + 1] = aux;
+        aux = xua;
     }
 }

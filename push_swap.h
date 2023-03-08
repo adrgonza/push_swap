@@ -17,8 +17,9 @@ typedef struct push{
 }				t_push;
 
 int main(int argc, char **argv);
-void px(t_push *push, int p);
-void rx(t_push *push, int r);
-void rrx(t_push *push, int rr);
+void sx(int *stack);
+void px(int *stack);
+void rx(int *stack);
+void rrx(int *stack);
 
 #endif
