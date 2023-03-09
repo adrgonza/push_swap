@@ -7,20 +7,37 @@ void ft_exit(t_push *push, int ko)
     exit(0);
 }
 
-void ft_sort_numbers(t_push *push)
+void ft_convert_nb(t_push *push)
 {
     int i;
+    int j;
+    int aux;
 
     i = -1;
-    while (push->stack_a[++i]) //cheeck if is ordenated
-        if (push->stack_a[i] > push->stack_a[i + 1] && push->stack_a[i + 1])
-            ft_exit(push, 2);
-    push->stack_b = malloc(push->nb_count);
-    if (!push->stack_b)
-        ft_exit(push, 2);
+    while (++i < push->nb_count) //bubble sort
+    {
+        j = -1;
+        while (++j < push->nb_count - 1)
+        {
+            if (push->stack_b[j] > push->stack_b[j + 1])
+            {
+                aux = push->stack_b[j];
+                push->stack_b[j] = push->stack_b[j + 1];
+                push->stack_b[j + 1] = aux;
+            } 
+        }
+    }
+    j = -1;
+    while (++j < push->nb_count)//convert nb to positions
+    {
+        i = -1;
+        while (++i < push->nb_count)
+            if (push->stack_a[j] == push->stack_b[i])
+                push->stack_a[j] = i + 1;
+    }
 }
 
-int ft_convert_nb(t_push *push) //look for de lowest number and change all of them (1 to n)
+int ft_check_nb(t_push *push) //look for de lowest number and change all of them (1 to n)
 {
     int i;
     int j;
@@ -33,6 +50,17 @@ int ft_convert_nb(t_push *push) //look for de lowest number and change all of th
             if (push->stack_a[j] == push->stack_a[i])
                 ft_exit(push, 1);
     }
+    push->stack_b = malloc(push->nb_count * sizeof(int));
+    if (!push->stack_b)
+        ft_exit(push, 2);
+    i = -1;
+    while (++i < push->nb_count) // get copy
+        push->stack_b[i] = push->stack_a[i];
+    i = -1;
+    while (++i < push->nb_count) //cheeck if is ordenated
+        if (push->stack_a[i] > push->stack_a[i + 1] && push->stack_a[i + 1])
+            return (ft_convert_nb(push), 1);
+    return(ft_exit(push, 2), 0);
 }
 
 void ft_get_number(int argc, char **argv, t_push *push)
@@ -40,7 +68,7 @@ void ft_get_number(int argc, char **argv, t_push *push)
     int i;
     
     i = 0;
-    push->string = malloc(1);
+    push->string = malloc(1 * sizeof(char));
     if (!push->string)
         ft_exit(push, 2);
     while(++i < argc) //put all arguments in a hole string
@@ -53,7 +81,7 @@ void ft_get_number(int argc, char **argv, t_push *push)
     while (push->splitted[i]) //get size of *int
         i++;
     push->nb_count = i;
-    push->stack_a = malloc(i); //allocate memory for it
+    push->stack_a = malloc(i * sizeof(int)); //allocate memory for it
     if (!push->stack_a)
         ft_exit(push, 2);
     i = -1;
@@ -80,34 +108,7 @@ int main(int argc, char **argv)
                 return (printf("\033[31mError:\nOnly numbers allow...\n"));
     }
     ft_get_number(argc, argv, &push); //put argument in a int *
-    ft_convert_nb(&push);
-    ft_sort_numbers(&push);
+    ft_check_nb(&push);
+    if (!ft_sort_nb(&push))
+        ft_exit(&push, 2);
 }
-
-
-/*
-    i = -1;
-    while (++i < push.nb_count && i != -1) //if the nb < 1 convert al of them
-        if (push.stack_a[i] < 1)
-            i = ft_convert_nb(&push);
-            
-            
-            
-            int ft_convert_nb(t_push *push) //look for de lowest number and change all of them (1 to n)
-{
-    int i;
-
-    i = 0;
-    push->min_number = push->stack_a[0];
-    while (++i <push->nb_count)
-        if (push->stack_a[i] < push->min_number)
-            push->min_number = push->stack_a[i];
-    i = -1;
-    while (++i <push->nb_count)
-        push->stack_a[i] -= push->min_number - 1;
-    return (-2);
-}
-            
-            
-            
-            */

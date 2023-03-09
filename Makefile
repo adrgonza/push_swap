@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = gcc
 RM = rm -f
-SRC = push_swap.c push_operations.c libft.a\
+SRC = push_swap.c push_utils.c push_operations.c libft.a\
 
 OBJ = $(SRC:.c=.o)
 
