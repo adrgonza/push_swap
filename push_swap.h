@@ -19,5 +19,6 @@ typedef struct push{
 int main(int argc, char **argv);
 int ft_sort_nb(t_push *push);
 int operation(t_push *push, int n);
+void ft_exit(t_push *push, int ko);
 
 #endif

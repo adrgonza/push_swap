@@ -24,7 +24,7 @@ void ft_convert_nb(t_push *push)
                 aux = push->stack_b[j];
                 push->stack_b[j] = push->stack_b[j + 1];
                 push->stack_b[j + 1] = aux;
-            } 
+            }
         }
     }
     j = -1;
@@ -37,7 +37,7 @@ void ft_convert_nb(t_push *push)
     }
 }
 
-int ft_check_nb(t_push *push) //look for de lowest number and change all of them (1 to n)
+int ft_check_nb(t_push *push) 
 {
     int i;
     int j;

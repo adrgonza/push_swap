@@ -12,26 +12,6 @@ void sx(int *stack) // saber si cuando s = 3 pero no hay stack_x y si no mover w
     }
 }
 
-void px(int *stack)
-{
-    int i;
-    int aux;
-    int xua;
-
-    i = -1;
-    if (stack[0])
-    {
-        aux = stack[0];
-        stack[0] = stack[0];
-        while(stack[++i])
-        {
-            xua = stack[i + 1];
-            stack[i + 1] = aux;
-            aux = xua;
-        }
-    }
-}
-
 void rx(int *stack)
 {
     int aux;
@@ -48,6 +28,32 @@ void rx(int *stack)
         xua = stack[i];
         stack[i] = aux;
         aux = xua;
+    }
+}
+
+void px(int *stack1, int *stack2)
+{
+    int i;
+    int aux;
+    int xua;
+
+    i = -1;
+    if (stack1[0])
+    {
+        aux = stack1[0];
+        stack1[0] = stack2[0];
+        rx(stack2);
+        i = 0;
+        while (stack2[i])
+            i++;
+        stack2[i - 1] = 0;
+        i = -1;
+        while(stack1[++i])
+        {
+            xua = stack1[i + 1];
+            stack1[i + 1] = aux;
+            aux = xua;
+        }
     }
 }
 
@@ -81,9 +87,9 @@ int operation(t_push *push, int n)
     if (n == 3)
         return(sx(push->stack_a), sx(push->stack_b), write(1, "ss\n", 3));
     if (n == 4)
-        return(px(push->stack_a), write(1, "pa\n", 3));
+        return(px(push->stack_a, push->stack_b), write(1, "pa\n", 3));
     if (n == 5)
-        return(px(push->stack_b), write(1, "pb\n", 3));
+        return(px(push->stack_b, push->stack_a), write(1, "pb\n", 3));
     if (n == 6)
         return(rx(push->stack_a), write(1, "ra\n", 3));
     if (n == 7)
