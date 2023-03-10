@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void sx(int *stack) // saber si cuando s = 3 pero no hay stack_x y si no mover write
+void sx(int *stack)
 {
     int aux;
 
@@ -38,7 +38,7 @@ void px(int *stack1, int *stack2)
     int xua;
 
     i = -1;
-    if (stack1[0])
+    if (stack2[0])
     {
         aux = stack1[0];
         stack1[0] = stack2[0];
@@ -104,3 +104,15 @@ int operation(t_push *push, int n)
         return(rrx(push->stack_a), rrx(push->stack_b), write(1, "rrr\n", 4));
     return 0;
 }
+/*
+int main(int argc, char **argv)
+{
+    int a[9] ={1, 2, 3, 1, 8, 5, 6, 7, 0};
+    int b[9] ={0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int i = -1;
+
+    rx(a);
+    while(++i < 9)
+        printf("%d %d\n", a[i], b[i]);
+}
+*/

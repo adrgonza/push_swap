@@ -4,10 +4,10 @@ int check_sort(t_push *push)
 {
 	int i;
 
-	i = 0;
-	while (++i < push->nb_count) //cheeck if is ordenated
-		if (push->stack_a[i] > push->stack_a[i + 1] && push->stack_a[i + 1])
-			return (1);
+	i = -1;
+	while (++i < push->nb_count - 1) //cheeck if is ordenated
+        if ((push->stack_a[i] > push->stack_a[i + 1]) && push->stack_a[i + 1])
+            return (1);
 	return 0;
 }
 
@@ -15,16 +15,17 @@ void ft_radix(t_push *push)
 {
 	int i;
 	int j;
+	int mask = 1;
+	int bit;
 
 	j = -1;
-	printf("hola\n");
-	while (check_sort(push))
+	while (1)
 	{
 		j++;
 		i = -1;
-		while(push->stack_a[++i])
+		while(push->stack_a[++i]) // infinite loop
 		{
-			if ((push->stack_a[i] >> j) & 1)
+			if (push->stack_a[i] >> j & 1)
 				operation(push, 6);
 			else
 				operation(push, 5);
@@ -32,12 +33,12 @@ void ft_radix(t_push *push)
 		i = -1;
 		while (push->stack_b[++i])
 			operation (push, 4);
-		
+		if (!check_sort(push))
+			return (ft_exit(push, 2));
 	}
-	ft_exit(push, 2);
 }
 
-void ft_sort_three(t_push *p)
+int ft_sort_three(t_push *p)
 {
 	if (p->stack_a[0] == 2 && p->stack_a[1] == 1)
 		operation(p, 1);
@@ -55,6 +56,7 @@ void ft_sort_three(t_push *p)
 	}
 	if (p->stack_a[0] == 2 && p->stack_a[1] == 3 && p->stack_a[2] == 1)
 		operation(p, 9);
+	return (1);
 }
 
 int ft_sort_nb(t_push *push)
@@ -67,8 +69,5 @@ int ft_sort_nb(t_push *push)
 		ft_sort_three(push);
 	else
 		ft_radix(push);
-	i = -1;
-	while (++i < push->nb_count)
-			printf("%d %d\n", push->stack_a[i], push->stack_b[i]);
 	return 0;
 }

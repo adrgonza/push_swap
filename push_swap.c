@@ -2,6 +2,10 @@
 
 void ft_exit(t_push *push, int ko)
 {
+    int i;
+    i = -1;
+	while (++i < push->nb_count)
+		printf("%d %d\n", push->stack_a[i], push->stack_b[i]);
     if (ko == 1)
         printf("\033[31mError:\nRepeated numbers...\n");
     exit(0);
@@ -50,6 +54,7 @@ int ft_check_nb(t_push *push)
             if (push->stack_a[j] == push->stack_a[i])
                 ft_exit(push, 1);
     }
+    
     push->stack_b = malloc(push->nb_count * sizeof(int));
     if (!push->stack_b)
         ft_exit(push, 2);
@@ -57,9 +62,10 @@ int ft_check_nb(t_push *push)
     while (++i < push->nb_count) // get copy
         push->stack_b[i] = push->stack_a[i];
     i = -1;
-    while (++i < push->nb_count) //cheeck if is ordenated
-        if (push->stack_a[i] > push->stack_a[i + 1] && push->stack_a[i + 1])
+    while (++i < push->nb_count - 1) //cheeck if is ordenated
+        if ((push->stack_a[i] > push->stack_a[i + 1]) && push->stack_a[i + 1])
             return (ft_convert_nb(push), 1);
+    printf("hola\n");
     return(ft_exit(push, 2), 0);
 }
 
