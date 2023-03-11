@@ -3,7 +3,6 @@
 int check_sort(t_push *push)
 {
 	int i;
-
 	i = -1;
 	while (++i < push->nb_count - 1) //cheeck if is ordenated
         if ((push->stack_a[i] > push->stack_a[i + 1]) && push->stack_a[i + 1])
@@ -15,26 +14,23 @@ void ft_radix(t_push *push)
 {
 	int i;
 	int j;
-	int mask = 1;
-	int bit;
 
-	j = -1;
+	i = 0;
 	while (1)
 	{
-		j++;
-		i = -1;
-		while(push->stack_a[++i]) // infinite loop
+		j = -1;
+		while(++j < push->nb_count)
 		{
-			if (push->stack_a[i] >> j & 1)
+			if (((push->stack_a[0] >> i) & 1) == 1)
 				operation(push, 6);
 			else
 				operation(push, 5);
 		}
-		i = -1;
-		while (push->stack_b[++i])
+		while (push->stack_b[0])
 			operation (push, 4);
-		if (!check_sort(push))
+		if (check_sort(push) == 0)
 			return (ft_exit(push, 2));
+		i++;
 	}
 }
 

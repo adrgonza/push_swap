@@ -99,7 +99,7 @@ int operation(t_push *push, int n)
     if (n == 9)
         return(rrx(push->stack_a), write(1, "rra\n", 4));
     if (n == 10)
-       return(rrx(push->stack_b), write(1, "rrb\n", 4));
+        return(rrx(push->stack_b), write(1, "rrb\n", 4));
     if (n == 11)
         return(rrx(push->stack_a), rrx(push->stack_b), write(1, "rrr\n", 4));
     return 0;
