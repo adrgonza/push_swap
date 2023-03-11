@@ -1,5 +1,5 @@
 NAME = push_swap
-CC = gcc
+CC = gcc -g3
 RM = rm -f
 SRC = push_swap.c push_utils.c push_operations.c libft.a\
 
@@ -16,6 +16,6 @@ clean:
 fclean: clean
 		@$(RM) $(NAME)
 
-re: fclean all
+re: clean all
 
 .PHONY: all bonus fclean clean re

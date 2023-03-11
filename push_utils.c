@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/11 15:06:47 by adrgonza          #+#    #+#             */
+/*   Updated: 2023/03/11 19:33:24 by adrgonza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int check_sort(t_push *push)
@@ -15,13 +27,21 @@ void ft_radix(t_push *push)
 	int i;
 	int j;
 
+    printf("%d ", push->stack_a[0]);
+	printf("%d ", push->stack_a[1]);
+	printf("%d ", push->stack_a[2]);
+	printf("%d ", push->stack_a[3]);
+	printf("%d ", push->stack_a[4]);
+	printf("%d ", push->stack_a[5]);
+	//printf("%d ", push->stack_a[6]);
+	//ft_exit(push, 2);
 	i = 0;
 	while (1)
 	{
 		j = -1;
 		while(++j < push->nb_count)
 		{
-			if (((push->stack_a[0] >> i) & 1) == 1)
+			if (((push->stack_a[0] >> i) & 1) == 1) // push->stack_a[0] >> i & 1
 				operation(push, 6);
 			else
 				operation(push, 5);
@@ -32,6 +52,7 @@ void ft_radix(t_push *push)
 			return (ft_exit(push, 2));
 		i++;
 	}
+
 }
 
 int ft_sort_three(t_push *p)

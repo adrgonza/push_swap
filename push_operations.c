@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_operations.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/11 15:06:19 by adrgonza          #+#    #+#             */
+/*   Updated: 2023/03/11 18:45:38 by adrgonza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void sx(int *stack)
@@ -17,7 +29,7 @@ void rx(int *stack)
     int aux;
     int xua;
     int i;
-    
+
     i = 0;
     while (stack[i])
         i++;
@@ -62,7 +74,7 @@ void rrx(int *stack)
     int aux;
     int xua;
     int i;
-    
+
     i = 0;
     while (stack[i])
         i++;

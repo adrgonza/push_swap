@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/11 15:06:27 by adrgonza          #+#    #+#             */
+/*   Updated: 2023/03/11 19:30:48 by adrgonza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void ft_exit(t_push *push, int ko)
 {
+
     if (ko == 1)
         printf("\033[31mError:\nRepeated numbers...\n");
     free(push->stack_a);
@@ -12,34 +25,18 @@ void ft_exit(t_push *push, int ko)
 void ft_convert_nb(t_push *push)
 {
     int i;
-    int j;
-    int aux;
 
+    i = 0;
+    push->min_number = push->stack_a[0];
+    while (++i <push->nb_count)
+        if (push->stack_a[i] < push->min_number)
+            push->min_number = push->stack_a[i];
     i = -1;
-    while (++i < push->nb_count) //bubble sort
-    {
-        j = -1;
-        while (++j < push->nb_count - 1)
-        {
-            if (push->stack_b[j] > push->stack_b[j + 1])
-            {
-                aux = push->stack_b[j];
-                push->stack_b[j] = push->stack_b[j + 1];
-                push->stack_b[j + 1] = aux;
-            }
-        }
-    }
-    j = -1;
-    while (++j < push->nb_count)//convert nb to positions
-    {
-        i = -1;
-        while (++i < push->nb_count)
-            if (push->stack_a[j] == push->stack_b[i])
-                push->stack_a[j] = i + 1;
-    }
+    while (++i <push->nb_count)
+        push->stack_a[i] -= push->min_number - 1;
 }
 
-int ft_check_nb(t_push *push) 
+int ft_check_nb(t_push *push)
 {
     int i;
     int j;
@@ -68,7 +65,7 @@ int ft_check_nb(t_push *push)
 void ft_get_number(int argc, char **argv, t_push *push)
 {
     int i;
-    
+
     i = 0;
     push->string = malloc(1 * sizeof(char));
     if (!push->string)
