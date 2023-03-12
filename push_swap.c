@@ -6,7 +6,7 @@
 /*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:06:27 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/12 21:01:56 by adrgonza         ###   ########.fr       */
+/*   Updated: 2023/03/12 22:48:07 by adrgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void ft_convert_nb(t_push *push) // remove negatives and 0
         i = -1;
         while (++i < push->nb_count)
             if (push->stack_a[j] == push->stack_b[i])
+            {
                 push->stack_a[j] = i + 1;
+                break ;
+            }
     }
 }
 
@@ -76,13 +79,14 @@ int ft_check_nb(t_push *push) //check repepeated and ordenated
             if (push->stack_a[j] == push->stack_a[i])
                 ft_exit(push, 4);
     }
-    push->stack_b = malloc(push->nb_count * sizeof(int) + 1);
+    push->stack_b = ft_calloc(sizeof(int), (push->nb_count + 1));
     if (!push->stack_b)
         ft_exit(push, 5);
     i = -1;
     while (++i < push->nb_count) // get copy
         push->stack_b[i] = push->stack_a[i];
     i = -1;
+
     while (++i < push->nb_count - 1) //cheeck if is ordenated
         if ((push->stack_a[i] > push->stack_a[i + 1]) && push->stack_a[i + 1])
            return (ft_convert_nb(push), 1);
@@ -94,7 +98,7 @@ void ft_get_nb(int argc, char **argv, t_push *push)
     int i;
 
     i = 0;
-    push->string = malloc(1 * sizeof(char));
+    push->string = ft_calloc(sizeof(char), 1);
     if (!push->string)
         ft_exit(push, 2);
     while(++i < argc) //put all arguments in a hole string
@@ -107,10 +111,9 @@ void ft_get_nb(int argc, char **argv, t_push *push)
     while (push->splitted[i]) //get size of *int
         i++;
     push->nb_count = i;
-    push->stack_a = malloc(i * sizeof(int) + 1); //allocate memory for it
+    push->stack_a = ft_calloc(sizeof(int), (push->nb_count + 1)); //allocate memory for it
     if (!push->stack_a)
         ft_exit(push, 3);
-    push->stack_a[i] = 0;
     i = -1;
     while(push->splitted[++i]) //put every number in a int *
         push->stack_a[i] = ft_atoi(push->splitted[i]);
