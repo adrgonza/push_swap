@@ -6,7 +6,7 @@
 /*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:06:47 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/11 19:33:24 by adrgonza         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:52:19 by adrgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@ void ft_radix(t_push *push)
 	int i;
 	int j;
 
-    printf("%d ", push->stack_a[0]);
-	printf("%d ", push->stack_a[1]);
-	printf("%d ", push->stack_a[2]);
-	printf("%d ", push->stack_a[3]);
-	printf("%d ", push->stack_a[4]);
-	printf("%d ", push->stack_a[5]);
-	//printf("%d ", push->stack_a[6]);
-	//ft_exit(push, 2);
 	i = 0;
 	while (1)
 	{

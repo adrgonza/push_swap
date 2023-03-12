@@ -6,7 +6,7 @@
 /*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:06:27 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/11 19:30:48 by adrgonza         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:50:58 by adrgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int ft_check_nb(t_push *push)
             if (push->stack_a[j] == push->stack_a[i])
                 ft_exit(push, 1);
     }
-    push->stack_b = malloc(push->nb_count * sizeof(int));
+    push->stack_b = malloc(push->nb_count * sizeof(int) + 1);
     if (!push->stack_b)
         ft_exit(push, 2);
     i = -1;
@@ -80,9 +80,10 @@ void ft_get_number(int argc, char **argv, t_push *push)
     while (push->splitted[i]) //get size of *int
         i++;
     push->nb_count = i;
-    push->stack_a = malloc(i * sizeof(int)); //allocate memory for it
+    push->stack_a = malloc(i * sizeof(int) + 1); //allocate memory for it
     if (!push->stack_a)
         ft_exit(push, 2);
+    push->stack_a[i] = 0;
     i = -1;
     while(push->splitted[++i]) //put every number in a int *
         push->stack_a[i] = ft_atoi(push->splitted[i]);

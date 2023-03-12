@@ -6,7 +6,7 @@
 /*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:06:19 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/11 18:45:38 by adrgonza         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:52:34 by adrgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,11 @@ int operation(t_push *push, int n)
 /*
 int main(int argc, char **argv)
 {
-    int a[9] ={1, 2, 3, 1, 8, 5, 6, 7, 0};
-    int b[9] ={0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int a[9] ={1, 2, 3, 4, 8, 5, 6 , 9};
+    int b[7] ={0, 0, 0, 0, 0, 0, 0};
     int i = -1;
 
     rx(a);
-    while(++i < 9)
+    while(++i < 7)
         printf("%d %d\n", a[i], b[i]);
-}
-*/
+}*/
