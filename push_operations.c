@@ -6,7 +6,7 @@
 /*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:06:19 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/12 16:52:34 by adrgonza         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:16:38 by adrgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,3 @@ int operation(t_push *push, int n)
         return(rrx(push->stack_a), rrx(push->stack_b), write(1, "rrr\n", 4));
     return 0;
 }
-/*
-int main(int argc, char **argv)
-{
-    int a[9] ={1, 2, 3, 4, 8, 5, 6 , 9};
-    int b[7] ={0, 0, 0, 0, 0, 0, 0};
-    int i = -1;
-
-    rx(a);
-    while(++i < 7)
-        printf("%d %d\n", a[i], b[i]);
-}*/

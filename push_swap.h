@@ -6,14 +6,15 @@
 /*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:06:40 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/11 15:06:41 by adrgonza         ###   ########.fr       */
+/*   Updated: 2023/03/12 19:16:07 by adrgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
+# include <stdlib.h>
+# include <stdint.h>
 # include <unistd.h>
 # include <stdio.h>
 
@@ -29,8 +30,13 @@ typedef struct push{
 }				t_push;
 
 int main(int argc, char **argv);
-int ft_sort_nb(t_push *push);
 int operation(t_push *push, int n);
-void ft_exit(t_push *push, int ko);
+int	ft_atoi(const char *str);
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin_s(char *s1, char const *s2);
+char	**ft_split(char const *s, char c);
+void    ft_sort_nb(t_push *push);
+void    *ft_calloc(size_t count, size_t size);
+void    ft_exit(t_push *push, int ko);
 
 #endif

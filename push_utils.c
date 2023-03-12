@@ -1,82 +1,70 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_utils.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 15:06:47 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/12 16:52:19 by adrgonza         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-int check_sort(t_push *push)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int i;
-	i = -1;
-	while (++i < push->nb_count - 1) //cheeck if is ordenated
-        if ((push->stack_a[i] > push->stack_a[i + 1]) && push->stack_a[i + 1])
-            return (1);
-	return 0;
+	size_t	i;
+	char	*p;
+	void	*s;
+
+	s = malloc(count * size);
+	if (!s)
+		return (NULL);
+	p = s;
+	i = 0;
+	while (i < (size * count))
+		p[i++] = 0;
+	return (s);
 }
 
-void ft_radix(t_push *push)
+
+size_t	ft_strlen(const char *s)
 {
-	int i;
-	int j;
+	size_t	i;
 
 	i = 0;
-	while (1)
-	{
-		j = -1;
-		while(++j < push->nb_count)
-		{
-			if (((push->stack_a[0] >> i) & 1) == 1) // push->stack_a[0] >> i & 1
-				operation(push, 6);
-			else
-				operation(push, 5);
-		}
-		while (push->stack_b[0])
-			operation (push, 4);
-		if (check_sort(push) == 0)
-			return (ft_exit(push, 2));
+	while (s[i])
 		i++;
-	}
-
+	return (i);
 }
 
-int ft_sort_three(t_push *p)
+int	ft_atoi(const char *str)
 {
-	if (p->stack_a[0] == 2 && p->stack_a[1] == 1)
-		operation(p, 1);
-	if (p->stack_a[0] == 3 && p->stack_a[1] == 2 && p->stack_a[2] == 1)
-	{
-		operation(p, 1);
-		operation(p, 9);
-	}
-	if (p->stack_a[0] == 3 && p->stack_a[1] == 1 && p->stack_a[2] == 2)
-		operation(p, 6);
-	if (p->stack_a[0] == 1 && p->stack_a[1] == 3 && p->stack_a[2] == 2)
-	{
-		operation(p, 1);
-		operation(p, 6);
-	}
-	if (p->stack_a[0] == 2 && p->stack_a[1] == 3 && p->stack_a[2] == 1)
-		operation(p, 9);
-	return (1);
+	int	i;
+	int	nb;
+	int	sign;
+
+	i = 0;
+	nb = 0;
+	sign = 1;
+	while ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+		nb = (str[i++] - '0') + nb * 10;
+	return (sign * nb);
 }
 
-int ft_sort_nb(t_push *push)
+char	*ft_strjoin_s(char *s1, char const *s2)
 {
-	int i;
+	int		i;
+	int		j;
+	char	*str;
+
+	if (!s1)
+		return (0);
+	str = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
 	i = -1;
-	while (++i < push->nb_count)
-		push->stack_b[i] = 0;
-	if (push->nb_count < 4)
-		ft_sort_three(push);
-	else
-		ft_radix(push);
-	return 0;
+	j = 0;
+	while (s1[++i])
+		str[i] = s1[i];
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }

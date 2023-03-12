@@ -1,7 +1,7 @@
 NAME = push_swap
-CC = gcc -g3
+CC = gcc -Wall -Wextra -Werror
 RM = rm -f
-SRC = push_swap.c push_utils.c push_operations.c libft.a\
+SRC = push_swap.c push_sort.c push_operations.c push_utils.c push_split.c\
 
 OBJ = $(SRC:.c=.o)
 
