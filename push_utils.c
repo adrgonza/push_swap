@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 04:25:41 by adrgonza          #+#    #+#             */
+/*   Updated: 2023/03/13 19:03:19 by adrgonza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	*ft_calloc(size_t count, size_t size)
@@ -16,7 +28,6 @@ void	*ft_calloc(size_t count, size_t size)
 	return (s);
 }
 
-
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
@@ -27,11 +38,11 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, t_push *push)
 {
-	int	i;
-	int	nb;
-	int	sign;
+	long int	nb;
+	int			i;
+	int			sign;
 
 	i = 0;
 	nb = 0;
@@ -44,6 +55,8 @@ int	ft_atoi(const char *str)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 		nb = (str[i++] - '0') + nb * 10;
+	if ((sign * nb) > 2147483647 || ((sign * nb) < -2147483648))
+		ft_exit(push, 4);
 	return (sign * nb);
 }
 
@@ -65,6 +78,10 @@ char	*ft_strjoin_s(char *s1, char const *s2)
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[i] = '\0';
-	free(s1);
+	if (s1)
+	{
+		free(s1);
+		s1 = NULL;
+	}
 	return (str);
 }
