@@ -6,7 +6,7 @@
 /*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:06:19 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/13 14:17:45 by adrgonza         ###   ########.fr       */
+/*   Updated: 2023/03/15 00:50:42 by adrgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,18 @@ void	rx(int *stack)
 	i = 0;
 	while (stack[i])
 		i++;
-	aux = stack[--i];
-	stack[i] = stack[0];
-	while (stack[--i])
+	if (i > 1)
 	{
-		xua = stack[i];
-		stack[i] = aux;
-		aux = xua;
+		i--;
+		aux = stack[i];
+		stack[i] = stack[0];
+		while (i > 0)
+		{
+			i--;
+			xua = stack[i];
+			stack[i] = aux;
+			aux = xua;
+		}
 	}
 }
 
@@ -59,12 +64,13 @@ void	px(int *stack1, int *stack2)
 		while (stack2[i])
 			i++;
 		stack2[i - 1] = 0;
-		i = -1;
-		while (stack1[++i])
+		i = 0;
+		while (stack1[i])
 		{
 			xua = stack1[i + 1];
 			stack1[i + 1] = aux;
 			aux = xua;
+			i++;
 		}
 	}
 }

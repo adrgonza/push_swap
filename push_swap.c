@@ -6,7 +6,7 @@
 /*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:06:27 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/13 21:40:15 by adrgonza         ###   ########.fr       */
+/*   Updated: 2023/03/15 00:49:12 by adrgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,13 @@ void	ft_get_nb(int argc, char **argv, t_push *push)
 	while (push->splitted[++i])
 		push->stack_a[i] = ft_atoi(push->splitted[i], push);
 }
-	
-void leaks()
-{
-	system("leaks -q push_swap");
-}
+
 int	main(int argc, char **argv)
 {
 	t_push	push;
 	int		i;
 	int		j;
-	
+
 	if (argc < 2)
 		return (0);
 	j = 0;
