@@ -6,7 +6,7 @@
 /*   By: adrgonza <adrgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:06:27 by adrgonza          #+#    #+#             */
-/*   Updated: 2023/03/15 00:49:12 by adrgonza         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:32:37 by adrgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_check_nb(t_push *push)
 	i = -1;
 	push->i = -1;
 	while (++i < push->nb_count - 1)
-		if ((push->stack_a[i] > push->stack_a[i + 1]) && push->stack_a[i + 1])
+		if ((push->stack_a[i] > push->stack_a[i + 1]))
 			return (ft_convert_nb(push), 1);
 	return (ft_exit(push, 6), 0);
 }
